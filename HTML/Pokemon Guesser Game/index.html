@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pokémon API</title>
+  </head>
+  <body>
+    <style>
+      div {
+        max-width: fit-content;
+        margin-inline: auto;
+        text-align: center;
+      }
+      .game {
+        border: 2px solid rgb(111, 207, 245);
+        padding-inline: 20px;
+        width: 500px;
+        max-width: 500px;
+        background-image: linear-gradient(
+          to bottom,
+          rgb(134, 207, 236),
+          rgb(64, 166, 171)
+        );
+      }
+      .hintButton {
+        margin: 5px;
+      }
+      .newPokemon {
+        margin-bottom: 10px;
+        font-size: 20px;
+      }
+      h1 {
+        color: rgb(0, 0, 0);
+      }
+      .dexEntry {
+        max-width: fit-content;
+      }
+      img {
+        width: 200px;
+      }
+      p {
+        font-size: 20px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+    </style>
+    <div class="container">
+      <p>Welcome to the Pokémon API</p>
+      <div class="game">
+        <h1>Guess The Pokemon</h1>
+
+        <button class="newPokemon" id="fetchButton" onclick="fetchPokemon()">
+          New Pokemon
+        </button>
+        <br />
+        <input type="text" id="pokemonInput" placeholder="Enter Pokémon name" />
+        <button id="searchButton" onclick="searchPokemon()">Search</button>
+
+        <div>
+          <button class="hintButton" onclick="showImage()">Show Image</button>
+          <button class="hintButton" onclick="reveal()">Reveal Answer</button>
+          <p id="scoreDisplay">Score: 0</p>
+        </div>
+
+        <div id="pokemonContainer">
+          <!-- Pokémon data will be displayed here -->
+          <p id="pokemonName"></p>
+          <img id="pokemonImage" src="" alt="" />
+          <p class="dexEntry" id="pokemonDescription"></p>
+        </div>
+      </div>
+
+      <p id="correct"></p>
+    </div>
+  </body>
+</html>
+
+<script>
+  let pokemonName = "pikachu";
+  let pokemonImgUrl =
+    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png";
+  let pokemonDesc =
+    "When several of these Pokémon gather, their electricity could build and cause lightning storms.";
+
+  let score = 0;
+
+  let current = 2;
+  function searchPokemon() {
+    const inputName = document
+      .getElementById("pokemonInput")
+      .value.toLowerCase()
+      .trim();
+    if (inputName == pokemonName) {
+      updateScore(current);
+
+      reveal();
+      document.getElementById("correct").innerText = "Correct!";
+    } else {
+      document.getElementById("correct").innerText = "Wrong!";
+    }
+  }
+
+  function fetchPokemon() {
+    resetScreen();
+    getData(`https://pokeapi.co/api/v2/pokedex/1`)
+      .then((data) => {
+        randomPokemon = data.pokemon_entries[getRandomInt(1026)];
+        getData(
+          `https://pokeapi.co/api/v2/pokemon/${randomPokemon.pokemon_species.name}`
+        ).then((data) => {
+          setPokemon(data);
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  function updateScore(points = 0) {
+    score += points;
+    document.getElementById("scoreDisplay").innerText = "Score: " + score;
+  }
+
+  function resetScreen() {
+    document.getElementById("pokemonName").innerText = "";
+    document.getElementById("pokemonImage").src = "";
+    document.getElementById("pokemonDescription").innerText = "";
+    document.getElementById("correct").innerText = "";
+    current = 2;
+  }
+
+  function setPokemon(data) {
+    pokemonName = getName(data);
+    pokemonImgUrl = data.sprites.front_default;
+    getDexEntry(data.species.url, (dexEntry) => {
+      pokemonDesc = dexEntry;
+      document.getElementById("pokemonDescription").innerText = pokemonDesc;
+    });
+    // document.getElementById("pokemonName").innerText = pokemonName;
+    // document.getElementById("pokemonImage").src = pokemonImgUrl;
+  }
+
+  function showImage() {
+    current = 1;
+    if (document.getElementById("pokemonImage").src === pokemonImgUrl) {
+      document.getElementById("pokemonImage").src = "";
+      return;
+    }
+    document.getElementById("pokemonImage").src = pokemonImgUrl;
+  }
+
+  function reveal() {
+    document.getElementById("pokemonName").innerText = pokemonName;
+    document.getElementById("pokemonImage").src = pokemonImgUrl;
+  }
+
+  function getDexEntry(url, _callback) {
+    fetch(url).then((res) =>
+      res.json().then((data) => {
+        console.log(data);
+        const dexEntry = data.flavor_text_entries.find(
+          (entry) => entry.language.name === "en"
+        ).flavor_text;
+        // console.log(dexEntry);
+        // console.log(replaceEscChar(dexEntry));
+        _callback(replaceEscChar(dexEntry));
+      })
+    );
+  }
+
+  function replaceEscChar(data) {
+    let newData = data.replace(/\f/g, " ");
+    newData = newData.replace(/\n/g, " ");
+    return newData;
+  }
+
+  function getName(data) {
+    return data.name.replace("-", " ");
+  }
+
+  function getData(url) {
+    return fetch(url).then((res) => res.json());
+  }
+
+  function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
+</script>

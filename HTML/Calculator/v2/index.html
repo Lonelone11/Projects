@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <style>
+    div.calculator {
+        max-width: fit-content;
+        margin-inline: auto;
+        border: 2px solid black;
+        border-radius: 10px;
+        background-color: rgb(185, 212, 235);
+        padding: 10px;
+        margin-top: 20px;
+    }
+    div.Numbers {
+        max-width: fit-content;
+        margin: auto;
+        text-align: left;
+    }
+
+    input {
+        margin-bottom: 10px;
+        width: 395px;
+        height: 50px;
+        font-size: 20px;
+        border-radius: 5px;
+        padding-left: 5px;
+    }
+
+    button {
+        width: 60px;
+        height: 60px;
+        margin: 2px;
+        border-radius: 5px;
+        font-size: 18px;
+        text-align: center;
+    }
+    .equalsButton {
+        width: 195px;
+        background-color: #87e987;
+    }
+
+    .operator {
+        background-color: #3db5f1;
+    }
+  </style>
+
+  <head>
+    <title>Advanced Calculator</title>
+  </head>
+  <body>
+    <div class="calculator">
+      <input type="text" id="expression" placeholder="Enter expression" />
+      <div class="Numbers">
+        <button onclick="appendToExpression('7')">7</button>
+        <button onclick="appendToExpression('8')">8</button>
+        <button onclick="appendToExpression('9')">9</button>
+        <button class="operator" onclick="appendToExpression('/')">/</button>
+        <button class="operator" onclick="appendToExpression('(')">(</button>
+        <button class="operator" onclick="appendToExpression(')')">)</button>
+        <br></br>
+        
+        <button onclick="appendToExpression('4')">4</button>
+        <button onclick="appendToExpression('5')">5</button>
+        <button onclick="appendToExpression('6')">6</button>
+        <button class="operator" onclick="appendToExpression('*')">*</button>
+        <button class="operator" onclick="storeValue()" id="storeButton">STO</button>
+        <button class="operator" onclick="clearExpression()">C</button>
+        <br></br>
+        
+        <button onclick="appendToExpression('1')">1</button>
+        <button onclick="appendToExpression('2')">2</button>
+        <button onclick="appendToExpression('3')">3</button>
+        <button class="operator" onclick="appendToExpression('-')">-</button>
+        <button class="operator" onclick="recallValue()">REC</button>
+        <button class="operator" onclick="allClear()">AC</button>
+        <br></br>
+
+        <button onclick="appendToExpression('.')">.</button>
+        <button onclick="appendToExpression('0')">0</button>
+        <button class="operator" onclick="appendToExpression('+')">+</button>
+        <button class="equalsButton" onclick="calculateResult()">=</button>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script>
+  function appendToExpression(value) {
+    if (document.getElementById("expression").value === "Error") {
+        document.getElementById("expression").value = "";
+    }
+    document.getElementById("expression").value += value;
+  }
+  function clearExpression() {
+        document.getElementById("expression").value = "";
+    }
+
+  function calculateResult() {
+        try {
+            let expression = document.getElementById("expression").value;
+            let result = eval(expression);
+            document.getElementById("expression").value = result;
+            return true;
+        } catch (error) {
+            document.getElementById("expression").value = "Error";
+            return false;
+        }
+    }
+
+  let storedValue = null;
+  function storeValue() {
+        if (calculateResult()) {
+            storedValue = document.getElementById("expression").value;
+            document.getElementById("storeButton").style.backgroundColor = "#90EE90"; // Light green to indicate value is stored
+
+        }
+      }
+  function recallValue() {
+        if (storedValue !== null) {
+            appendToExpression(storedValue);
+        }
+      }
+  function allClear() {
+        clearExpression();
+        storedValue = null;
+        document.getElementById("storeButton").style.backgroundColor = "#ffffff";
+      }
+</script>

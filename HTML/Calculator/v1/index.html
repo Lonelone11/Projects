@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Calculator</title>
+
+    <style>
+      /* Add your CSS styles here */
+      /* #region mainCalc */
+      .mainTitle {
+        font-weight: bold;
+        font-size: 40px;
+        color: #10eaf1;
+        text-align: center;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        margin-top: 0px;
+      }
+      .inputLabel {
+        font-size: 18px;
+        color: #ffffff;
+        margin-top: 10px;
+        float: left;
+        margin-right: 20px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+      .operator {
+        font-size: 25px;
+        margin: 5px;
+        padding: 10px 20px;
+        background-color: #ffffff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        float: center;
+      }
+      .result {
+        font-size: 30px;
+        color: #ffffff;
+        margin-top: 20px;
+        text-align: center;
+      }
+      .inputField {
+        font-size: 18px;
+        padding: 5px;
+        margin: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        width: 100px;
+        float: right;
+      }
+      div.mainBody {
+        max-width: fit-content;
+        margin-inline: auto;
+        margin-top: 50px;
+        padding: 20px;
+        border: 4px solid #10eaf1;
+        border-radius: 10px;
+        background-color: #000000;
+      }
+      .inputSection {
+        max-width: fit-content;
+        margin-inline: auto;
+      }
+      .operatorSection {
+        max-width: fit-content;
+        margin-inline: auto;
+        float: center;
+      }
+      /* #endregion mainCalc */
+      .backdivText {
+        max-width: fit-content;
+        margin-inline: auto;
+      }
+      .backText {
+        font-size: 50px;
+        color: #000000;
+        text-align: center;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-weight: bold;
+        margin-top: 20px;
+        margin-bottom: 0px;
+      }
+      .backBody {
+        font-size: 20px;
+        color: #000000;
+        text-align: center;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        margin-top: 5px;
+        margin-bottom: 0px;
+      }
+    </style>
+  </head>
+  <!-- Set Background Colour and begin Main Body -->
+  <body style="background-color: #ffffff">
+    <div class="backdivText">
+      <p class="backText">SIMPLE CALCULATOR</p>
+      <p class="backBody">Instructions:</p>
+      <p class="backBody">1. Enter two numbers in the input fields.</p>
+      <p class="backBody">
+        2. Click on an operator button to perform the calculation.
+      </p>
+    </div>
+
+    <div class="mainBody">
+      <p class="mainTitle">CALCULATOR</p>
+      <div class="inputSection">
+        <p class="inputLabel">Enter a number:</p>
+        <input class="inputField" type="number" id="num1" />
+        <br /><br />
+        <p class="inputLabel">Enter another number:</p>
+        <input class="inputField" type="number" id="num2" />
+      </div>
+      <br /><br />
+      <br /><br />
+      <div class="operatorSection">
+        <button class="operator" onclick="calculate(0)">+</button>
+        <button class="operator" onclick="calculate(1)">-</button>
+        <button class="operator" onclick="calculate(2)">*</button>
+        <button class="operator" onclick="calculate(3)">/</button>
+      </div>
+      <p class="result" id="result"></p>
+    </div>
+  </body>
+</html>
+
+<script>
+  function calculate(oper) {
+    const num1 = parseFloat(document.getElementById("num1").value);
+    const num2 = parseFloat(document.getElementById("num2").value);
+    if (isNaN(num1) || isNaN(num2)) {
+      document.getElementById("result").innerText =
+        "Please enter valid numbers in both fields.";
+      return;
+    }
+    let result;
+    switch (oper) {
+      case 0:
+        result = num1 + num2;
+        break;
+      case 1:
+        result = num1 - num2;
+        break;
+      case 2:
+        result = num1 * num2;
+        break;
+      case 3:
+        result = num1 / num2;
+        break;
+    }
+    document.getElementById("result").innerText = "The result is: " + result;
+  }
+</script>
