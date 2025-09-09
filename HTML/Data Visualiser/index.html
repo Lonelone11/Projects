@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Data Visualiser</title>
+  </head>
+  <body>
+    <style>
+        body {
+            font-family:Verdana, Geneva, Tahoma, sans-serif;
+        }
+        .dataContainer {
+            width: 500px;
+            border: 1px solid black;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        input {
+            width: 150px;
+            margin-bottom: 10px;
+        }
+        .stackVisual {
+            border: 1px solid black;
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            margin: 0px;
+            display: inline-block;
+            vertical-align: top;
+        }
+        .popedStack {
+            border: 2px solid red;
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            margin: 0px;
+            display: inline-block;
+            vertical-align: top;
+        }
+        .visualType {
+            font-weight: bold;
+            margin: 0px;
+            margin-bottom: 5px;
+            font-size: 20px;
+        }
+
+    </style>
+    <h1>Data Visualiser</h1>
+
+    <input type="number" id="dataInput" placeholder="Enter a number" />
+    <div class="dataContainer">
+        <p class="visualType">STACK</p>
+        <button onclick="pushStack()" id="pushButton">Push</button>
+        <button onclick="popStack()" id="popButton">Pop</button>
+        <br></br>
+        <p id="popedStack" class="popedStack"></p>
+        <br></br>
+        <p id="stack1" class="stackVisual"></p>
+        <p id="stack2" class="stackVisual"></p>
+        <p id="stack3" class="stackVisual"></p>    
+        <p id="stack4" class="stackVisual"></p>
+        <p id="stack5" class="stackVisual"></p>
+        <p id="stack6" class="stackVisual"></p>
+        <p id="stack7" class="stackVisual"></p>
+        <p id="stack8" class="stackVisual"></p>
+    </div>
+    <div class="dataContainer">
+        <p class="visualType">QUEUE</p>
+        <button onclick="pushQueue()" id="enqueueButton">Enqueue</button>
+        <button onclick="popQueue()" id="dequeueButton">Dequeue</button>
+        <br></br>
+        <p id="dequeuedQueue" class="popedStack"></p>
+        <br></br>
+        <p id="queue1" class="stackVisual"></p>
+        <p id="queue2" class="stackVisual"></p>
+        <p id="queue3" class="stackVisual"></p>    
+        <p id="queue4" class="stackVisual"></p>
+        <p id="queue5" class="stackVisual"></p>
+        <p id="queue6" class="stackVisual"></p>
+        <p id="queue7" class="stackVisual"></p>
+        <p id="queue8" class="stackVisual"></p>
+
+    </div>
+</body>
+</html>
+
+<script>
+  let stack = [];
+  let stackCurrPoped = undefined;
+  let stackHead = -1;
+  function pushStack() {
+    if (stackHead >= 7) {
+      alert("Stack Overflow");
+      return;
+    }
+    stackHead++;
+    stack[stackHead] = document.getElementById("dataInput").value;
+    updateStackVisuals();
+    console.log(stack);
+  }
+  function popStack() {
+    if (stackHead >= 0) {
+      stackCurrPoped = stack[stackHead];
+      stack[stackHead] = undefined;
+      console.log(stack);
+      stackHead--;
+    }
+    updateStackVisuals();
+    console.log(stack);
+  }
+
+  function updateStackVisuals() {
+    if (stackCurrPoped === undefined) {
+        document.getElementById("popedStack").innerText = "";
+    }
+    else
+    document.getElementById("popedStack").innerText = stackCurrPoped;
+    for (let i = 0; i < stack.length; i++) {
+        if (stack[i] === undefined) 
+        {
+            document.getElementById("stack" + (i + 1)).innerText = "";
+            continue;
+        }
+            document.getElementById("stack" + (i + 1)).innerText = stack[i];
+
+    }
+    }   
+
+
+let queue = [];
+let queueHead = -1;
+let queueTail = -1;
+let queueCurrDequeued = undefined;
+function pushQueue() {
+    if (queueTail >= 7) {
+        alert("Queue Overflow");
+        return;
+    }
+    queueTail++;
+    queue[queueTail] = document.getElementById("dataInput").value;
+    updateQueueVisuals();
+    console.log("Current Queue: " + queue);
+}
+
+function popQueue() {
+    if (queueHead < queueTail) {
+        queueCurrDequeued = queue[0];
+        for (let i = 0; i < queueTail + 1; i++) {
+            if (i === queueTail) {
+                queue[i] = undefined;
+                queueTail--;
+                break;
+            }
+            queue[i] = queue[i + 1];
+        }
+    }
+    updateQueueVisuals();
+    console.log("Current Queue: " + queue);
+    console.log("Current dequeued: " + queueCurrDequeued);
+}
+
+function updateQueueVisuals() {
+    for (let i = 0; i < queue.length; i++) {
+        if (queue[i] === undefined) {
+            document.getElementById("queue" + (i + 1)).innerText = "";
+            continue;
+        }
+        document.getElementById("queue" + (i + 1)).innerText = queue[i];
+
+    }
+    if (queueCurrDequeued === undefined) {
+        document.getElementById("dequeuedQueue").innerText = "";
+    }
+    else {
+        document.getElementById("dequeuedQueue").innerText = queueCurrDequeued;
+    }
+}
+
+
+</script>
