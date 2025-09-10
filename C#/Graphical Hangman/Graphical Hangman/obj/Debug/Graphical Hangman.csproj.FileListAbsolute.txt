@@ -1,0 +1,21 @@
+\\esher.ac.uk\home\Students\2023\232649\Visual Studio 2022\My Projects\Graphical Hangman\Graphical Hangman\bin\Debug\Graphical Hangman.exe.config
+\\esher.ac.uk\home\Students\2023\232649\Visual Studio 2022\My Projects\Graphical Hangman\Graphical Hangman\bin\Debug\Graphical Hangman.exe
+\\esher.ac.uk\home\Students\2023\232649\Visual Studio 2022\My Projects\Graphical Hangman\Graphical Hangman\bin\Debug\Graphical Hangman.pdb
+\\esher.ac.uk\home\Students\2023\232649\Visual Studio 2022\My Projects\Graphical Hangman\Graphical Hangman\obj\Debug\Graphical Hangman.csproj.AssemblyReference.cache
+\\esher.ac.uk\home\Students\2023\232649\Visual Studio 2022\My Projects\Graphical Hangman\Graphical Hangman\obj\Debug\Graphical_Hangman.Form1.resources
+\\esher.ac.uk\home\Students\2023\232649\Visual Studio 2022\My Projects\Graphical Hangman\Graphical Hangman\obj\Debug\Graphical_Hangman.Properties.Resources.resources
+\\esher.ac.uk\home\Students\2023\232649\Visual Studio 2022\My Projects\Graphical Hangman\Graphical Hangman\obj\Debug\Graphical Hangman.csproj.GenerateResource.cache
+\\esher.ac.uk\home\Students\2023\232649\Visual Studio 2022\My Projects\Graphical Hangman\Graphical Hangman\obj\Debug\Graphical Hangman.csproj.CoreCompileInputs.cache
+\\esher.ac.uk\home\Students\2023\232649\Visual Studio 2022\My Projects\Graphical Hangman\Graphical Hangman\obj\Debug\Graphical Hangman.exe
+\\esher.ac.uk\home\Students\2023\232649\Visual Studio 2022\My Projects\Graphical Hangman\Graphical Hangman\obj\Debug\Graphical Hangman.pdb
+F:\School\Comp Sci\Code\Graphical Hangman\Graphical Hangman\bin\Debug\Graphical Hangman.exe.config
+F:\School\Comp Sci\Code\Graphical Hangman\Graphical Hangman\bin\Debug\Graphical Hangman.exe
+F:\School\Comp Sci\Code\Graphical Hangman\Graphical Hangman\bin\Debug\Graphical Hangman.pdb
+F:\School\Comp Sci\Code\Graphical Hangman\Graphical Hangman\obj\Debug\Graphical Hangman.csproj.AssemblyReference.cache
+F:\School\Comp Sci\Code\Graphical Hangman\Graphical Hangman\obj\Debug\Graphical_Hangman.Form1.resources
+F:\School\Comp Sci\Code\Graphical Hangman\Graphical Hangman\obj\Debug\Graphical_Hangman.Properties.Resources.resources
+F:\School\Comp Sci\Code\Graphical Hangman\Graphical Hangman\obj\Debug\Graphical Hangman.csproj.GenerateResource.cache
+F:\School\Comp Sci\Code\Graphical Hangman\Graphical Hangman\obj\Debug\Graphical Hangman.csproj.CoreCompileInputs.cache
+F:\School\Comp Sci\Code\Graphical Hangman\Graphical Hangman\obj\Debug\Graphical Hangman.exe
+F:\School\Comp Sci\Code\Graphical Hangman\Graphical Hangman\obj\Debug\Graphical Hangman.pdb
+F:\School\Comp Sci\Code\Graphical Hangman\Graphical Hangman\obj\Debug\Graphical Hangman.exe.config
